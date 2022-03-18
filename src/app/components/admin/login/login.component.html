@@ -1,0 +1,48 @@
+<div class="container-login">
+    <div class="login-flex">
+        <div class="login-right">
+            <div class="login-background">
+            </div>
+        </div>
+
+        <div class="login-left">
+            <div class="loader" [class.active]="isLoading">
+                <img src="../../../assets/ressources/loader/loader.gif" alt="">
+            </div>
+
+            <div class="login-form">
+                <div class="form-header">
+                    <div class="form-logo">
+                        <img src="../../../assets/ressources/img/mdn.png" alt="">
+                    </div>
+                    <div class="form-title">
+                        <h1>Bonjour!</h1>
+                        <p>Pour vous connecter à votre compte, renseignez votre adresse mail ainsi que votre mot de passe.</p>
+                    </div>
+                </div>
+
+                <form [formGroup]="brandForm" autocomplete="off">
+                    <div class="group-form">
+                        <input type="text" id="email" formControlName="email" placeholder="Votre adresse mail" [class.error]="errors.email">
+                        <div class="error" *ngIf="errors.email">
+                            <span class="icon-attention"></span>
+                            <span class="title">{{errors.email}}</span>
+                        </div>
+                    </div>
+
+                    <div class="group-form">
+                        <input type="password" id="password" formControlName="password" placeholder="Votre adresse mot de passe" [class.error]="errors.password">
+                        <div class="error" *ngIf="errors.password">
+                            <span class="icon-attention"></span>
+                            <span class="title">{{errors.password}}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-btn">
+                        <button type="submit" (click)="login()" [disabled]="isLoading">Connecter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

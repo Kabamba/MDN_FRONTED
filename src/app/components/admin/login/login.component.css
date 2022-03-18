@@ -1,0 +1,144 @@
+.container-login{
+    width:100%;
+    background-color:var(--white);
+    position:relative;
+    min-height:100vh;
+}
+
+.login-flex{
+    width:100%;
+    position:relative;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+
+.login-right{
+    width:60%;
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.login-right .login-background{
+    background:url('../../../../assets/ressources/img/Doctor-amico.svg');
+    background-size:100% 100%;
+    width:80%;
+    height:500px;
+    margin:auto;
+}
+
+.login-left{
+    width:40%;
+    position: relative;
+    padding:20px 40px;
+    font-family: "Lato-Regular";
+}
+
+.login-left .hr{
+    display:block;
+    position:absolute;
+    left:-30px;
+    width:1px;
+    height:80%;
+    background:var(--grey-primary);
+}
+
+.login-left .login-form{
+    width:100%;
+    position:relative;
+}
+
+.login-left .login-form .form-logo{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    line-height: 0px;
+}
+
+.login-left .login-form .form-logo h3{
+    font-family: "Raleway-BoldItalic";
+    font-weight:700 !important;
+    font-size: 22px;
+    color:var(--color-text-secondary);
+    word-spacing:-3px;
+}
+
+.login-left .login-form .form-logo h3 span{
+    color:var(--theme-base);
+}
+
+.login-left .login-form .form-logo span img{
+    width:40px;
+    height: 40px;
+}
+
+.login-left .login-form  .form-title{
+    width:80%;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    text-align:center;
+    margin:0px auto 0px;
+}
+
+.login-left .login-form  .form-title h1{
+    font-family: "Lato-Bold";
+    color:var(--color-text-secondary);
+}
+
+.login-left .login-form  .form-title p{
+    margin-top:20px;
+    color:var(--color-text-secondary);
+}
+
+.login-form form{
+    margin-top:50px;
+    display:block;
+}
+
+.login-form .group-form {
+    width:100%;
+    margin-bottom:30px;
+}
+
+.login-form .group-form input,
+.login-form .form-btn button{
+    font-family:"Lato-Regular";
+    border:none;
+    outline:none;
+    transition:all 0.3s ease 0s;
+    background:transparent;
+    width:100%;
+    height:55px;
+    line-height: 55px;
+    padding:10px 20px;
+    border-radius:8px;
+}
+
+.login-form .group-form  input{
+    background-color:#dbe5e7;
+}
+
+.login-form .group-form  input:focus{
+    box-shadow:0 0 0 3px #33993379;
+}
+
+.login-form .form-btn button{
+    background:var(--theme-btn-primary);
+    color:var(--white);
+    line-height:0px;
+    height:55px;
+    cursor:pointer;
+    box-shadow:0px 2px 15px rgba(0, 0, 0, 0.2);
+    font-size:18px;
+}
+
+.login-form .form-btn button:hover{
+    background:var(--theme-btn-hover);
+}
+
+.login-form .form-btn button[disabled]{
+    background:var(--theme-btn-disabled);
+}

@@ -1,0 +1,142 @@
+<app-nav-left (wrapper)="wrapper($event)" [addActive]="addActive"></app-nav-left>
+
+<div class="wrapper" [class.active]="isWrapper" (click)="closeAll()">
+    <div class="header-responsive">
+        <div class="logo">
+            <h2><em>MDN<span> admin</span></em></h2>
+        </div>
+
+        <div class="toggle" (click)="toggle($event)">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="wrapper-content">
+        <app-search-bar (night)="night($event)"></app-search-bar>
+        <div class="contents">
+            <div class="modal" role="dialog" aria-modal="true" [class.active]="showModal" (click)="closeModal()">
+                <div class="card-wrapper" (click)="stop($event)">
+
+                    <!-- Loading -->
+                    <!-- Loading -->
+                    <div class="loading-table loading-modal" [class.active]="!isAdding">
+                        <div>
+                        </div>
+                    </div>
+                    <!-- Loading -->
+                    <!-- Loading -->
+
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <div class="card-header">
+                        <h3>Service</h3>
+                        <span class="icon" (click)="closeModal()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                <path
+                                    d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <form [formGroup]="brandForm" class="card-form" autocomplete="off">
+                        <div class="card-title">
+                            <h3>Ajouter un service</h3>
+                        </div>
+
+                        <input type="hidden" id="id" formControlName="id">
+
+                        <div class="group-form">
+                            <div class="input">
+                                <label for="email">Libellé </label>
+                                <input type="text" id="libelle" formControlName="libelle" placeholder="Adresse mail"
+                                    [class.error]="errors.libelle">
+                                <div class="error" *ngIf="errors.libelle">
+                                    <span class="icon-attention"></span>
+                                    <span class="title">{{errors.libelle}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-btn">
+                            <button type="submit" (click)="sauvegarder()" [disabled]="isAdding">Sauvegarder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="btn-content pd-10">
+                <button type="button" (click)="activeModal()">Ajouter un service</button>
+            </div>
+
+            <div class="tableaux pd-10">
+                <div class="loading-table" [class.active]="!isLoadindTable">
+                    <div>
+                    </div>
+                </div>
+
+                <div class="header-content">
+                    <h2>Liste des services</h2>
+
+                    <div class="group-form">
+                        <input type="text" name="libelle" [(ngModel)]="libelle" (ngModelChange)="search()"
+                            placeholder="Rechercher par le libellé">
+
+                        <span class="icon-search"></span>
+                    </div>
+                </div>
+
+                <div class="table">
+                    <table class="">
+                        <thead>
+                            <th (click)="sort('id')">#ID <span class="icon-sort-number-up"></span></th>
+                            <th (click)="sort('libelle')">Libellé <span class="icon-sort-name-up"></span></th>
+                            <th>Actions</th>
+                        </thead>
+
+                        <tbody>
+                            <tr
+                                *ngFor="let service of services | orderBy: key : reverse | paginate : {itemsPerPage:6,currentPage:p}">
+                                <td>{{service.id}}</td>
+                                <td>
+                                    <div class="td-flex">
+                                        <span>{{service.libelle}}</span>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <button type="button" class="badge success" (click)="show(service.id)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
+                                            viewBox="0 0 512 512">
+                                            <polygon
+                                                points="358.62 129.28 86.49 402.08 70 442 109.92 425.51 382.72 153.38 358.62 129.28"
+                                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:44px" />
+                                            <path
+                                                d="M413.07,74.84,401.28,86.62l24.1,24.1,11.79-11.79a16.51,16.51,0,0,0,0-23.34l-.75-.75A16.51,16.51,0,0,0,413.07,74.84Z"
+                                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:44px" />
+                                        </svg>
+                                    </button>
+
+                                    <button type="button" class="badge danger" (click)="delete(service.id)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
+                                            viewBox="0 0 512 512">
+                                            <rect x="32" y="48" width="448" height="80" rx="32" ry="32" />
+                                            <path
+                                                d="M74.45,160a8,8,0,0,0-8,8.83L92.76,421.39a1.5,1.5,0,0,0,0,.22A48,48,0,0,0,140.45,464H371.54a48,48,0,0,0,47.67-42.39l0-.21,26.27-252.57a8,8,0,0,0-8-8.83ZM323.31,340.69a16,16,0,1,1-22.63,22.62L256,318.63l-44.69,44.68a16,16,0,0,1-22.63-22.62L233.37,296l-44.69-44.69a16,16,0,0,1,22.63-22.62L256,273.37l44.68-44.68a16,16,0,0,1,22.63,22.62L278.62,296Z" />
+                                        </svg>
+                                    </button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <pagination-controls (pageChange)=" p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

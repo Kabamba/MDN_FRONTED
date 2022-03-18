@@ -1,0 +1,97 @@
+<app-nav-left app-nav-left (wrapper)="wrapper($event)" [addActive]="addActive"></app-nav-left>
+
+
+<div class="wrapper" [class.active]="isWrapper">
+    <div class="header-responsive">
+        <div class="logo">
+            <h2><em>MDN<span> admin</span></em></h2>
+        </div>
+
+        <div class="toggle" (click)="toggle($event)">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="wrapper-content">
+        <app-search-bar (night)="night($event)"></app-search-bar>
+        <div class="contents">
+            <div class="btn-content pd-10">
+                <button type="button" (click)="printFile()">Imprimer la grille</button>
+            </div>
+
+            <!-- grille -->
+            <!-- grille -->
+            <div class="grille pd-10">
+                <form [formGroup]="brandForm">
+
+                    <div class="search-two" >
+                        <div>
+                            <label for="">Du</label>
+                            <input type="date" id="date_deb" formControlName="date_deb" required>
+                        </div>
+
+                        <div>
+                            <label for="">Au</label>
+                            <input type="date" id="date_fin" formControlName="date_fin" required>
+                        </div>
+
+                        <div>
+                            <label for="">&nbsp;</label>
+                            <button (click)="grille()">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="grille-content">
+                    <table class="grille-table">
+                        <thead>
+                            <div class="flex-th">
+                                <div class="card-th">
+                                    <th>semaine</th>
+                                </div>
+                                <div class="card-th">
+                                    <th>spécialisté</th>
+                                    <th>conv</th>
+                                    <th>assur</th>
+                                    <th>prive</th>
+                                    <th>total</th>
+                                </div>
+                            </div>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let grille of grilles">
+                                <div class="flex-tr">
+                                    <div class="card-tr">
+                                        <td>{{grille.date_rdv}}</td>
+                                    </div>
+                                    <div class="card-tr">
+                                        <div *ngFor="let appoint of grille.appoints">
+                                            <td>Dr {{appoint.doctor_name}}</td>
+                                            <td>{{appoint.conv == 0 ? '0' : appoint.conv}}</td>
+                                            <td>{{appoint.assur == 0 ? '0' : appoint.assur}}</td>
+                                            <td>{{appoint.prive == 0 ? '0' : appoint.prive}}</td>
+                                            <td>{{appoint.total == 0 ? '0' : appoint.total}}</td>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="total">
+                                    <p><strong>Total</strong></p>
+                                    <div class="total-td">
+                                        <div class="t-td">{{grille.conv == 0 ? '0' : grille.conv}}</div>
+                                        <div class="t-td">{{grille.assur == 0 ? '0' : grille.assur}}</div>
+                                        <div class="t-td">{{grille.prive == 0 ? '0' : grille.prive}}</div>
+                                        <div class="t-td">{{grille.total == 0 ? '0' : grille.total}}</div>
+
+                                    </div>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- grille -->
+            <!-- grille -->
+        </div>
+    </div>
+</div>

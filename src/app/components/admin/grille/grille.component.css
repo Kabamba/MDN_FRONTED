@@ -1,0 +1,167 @@
+.grille {
+  margin-top: 50px;
+}
+
+.grille-content {
+  background: var(--white);
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  transition: background 0.4s ease 0.1s;
+  box-shadow: 0px 3px 20px rgb(0 0 0 / 5%);
+}
+
+.grille-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #bbbbbb;
+  border-bottom: none;
+}
+
+.flex-th {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #bbbbbb;
+}
+
+.flex-th .card-th {
+  width: 60%;
+  display: flex;
+}
+
+.flex-th .card-th:first-child {
+  width: 40%;
+}
+
+.flex-th .card-th th {
+  text-align: left;
+  text-transform: capitalize;
+  flex-basis: 20%;
+  padding: 10px 8px;
+  border-left: 2px solid #bbbbbb;
+}
+
+.flex-th .card-th:first-child th {
+  border: none;
+}
+
+.flex-th .card-th:nth-child(2) th:first-child {
+  flex-basis: 50%;
+}
+
+.flex-tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-tr .card-tr {
+  width: 60%;
+}
+
+.flex-tr .card-tr:first-child {
+  width: 40%;
+}
+
+.flex-tr .card-tr td {
+  padding: 10px 8px;
+}
+
+.flex-tr .card-tr div {
+  display: flex;
+}
+
+.flex-tr .card-tr:nth-child(2) div td:nth-child(1) {
+  flex-basis: 50%;
+}
+
+.flex-tr .card-tr div > td {
+  flex-basis: 20%;
+  border-left: 2px solid #bbbbbb;
+}
+
+.total {
+  width: 100%;
+  background: #dc354652;
+  border-top: 2px solid #bbbbbb;
+  border-bottom: 2px solid #bbbbbb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total p {
+  padding: 10px 5px;
+  width: 66.77777%;
+}
+
+.total-td {
+  display: inline-flex;
+  width: 40%;
+}
+
+.total-td .t-td {
+  flex-basis: 30%;
+  border-left: 2px solid #bbbbbb;
+  padding: 10px 8px;
+}
+
+.total-td .t-td:nth-child(2) {
+  flex-basis: 30%;
+}
+
+.search-two {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  background: var(--white);
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04);
+  transition:.4s ease.1s;
+}
+
+.search-two label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.search-two div {
+  width: 45%;
+  margin-right: 10px;
+}
+
+.search-two input {
+  border: none;
+  outline: none;
+  width: 100%;
+  border: 1px solid #bbbbbb;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.search-two .form-btn {
+  border: 1px solid red;
+  height: 100%;
+}
+
+.search-two button {
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  height: 50px;
+  align-items: flex-start;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: 1px solid var(--grey-input-fill);
+}
+
+.search-two .group-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

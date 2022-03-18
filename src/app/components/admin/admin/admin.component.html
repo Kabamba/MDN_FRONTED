@@ -1,0 +1,225 @@
+<app-nav-left (wrapper)="wrapper($event)" [addActive]="addActive"></app-nav-left>
+
+<div class="wrapper" [class.active]="isWrapper" (click)="closeAll()">
+    <div class="header-responsive">
+        <div class="logo">
+            <h2><em>MDN<span> admin</span></em></h2>
+        </div>
+
+        <div class="toggle" (click)="toggle($event)">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="wrapper-content">
+        <app-search-bar (night)="night($event)"></app-search-bar>
+        <div class="contents">
+            <div class="modal" role="dialog" aria-modal="true" [class.active]="showModal" (click)="closeModal()">
+                <div class="card-wrapper" (click)="stop($event)">
+
+                    <!-- Loading -->
+                    <!-- Loading -->
+                    <div class="loading-table loading-modal" [class.active]="!isAdding">
+                        <div>
+                        </div>
+                    </div>
+
+                    <!-- Loading -->
+                    <!-- Loading -->
+
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <div class="card-header">
+                        <h3>Administrateur</h3>
+                        <span class="icon" (click)="closeModal()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                <path
+                                    d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <form [formGroup]="brandForm" class="card-form" autocomplete="off">
+                        <div class="card-title">
+                            <h3>Ajouter un administrateur</h3>
+                        </div>
+
+                        <input type="hidden" id="id" formControlName="id">
+
+                        <div class="group-form">
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="nom">Nom</label>
+                                    <input type="text" id="nom" formControlName="name" autocomplete="off"
+                                        placeholder="Nom" [class.error]="errors.name">
+                                    <div class="error" *ngIf="errors.name">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.name}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="email">Adresse mail </label>
+                                    <input type="text" id="email" formControlName="email" placeholder="Adresse mail"
+                                        [class.error]="errors.email">
+                                    <div class="error" *ngIf="errors.email">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.email}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group-form">
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="telephone">Téléphone</label>
+                                    <input type="email" id="telephone" formControlName="telephone"
+                                        placeholder="Numéro de téléphone" [class.error]="errors.telephone">
+                                    <div class="error" *ngIf="errors.telephone">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.telephone}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="telephone">Roles</label>
+                                    <select id="role" formControlName="role" [class.error]="errors.role">
+                                        <option value="0">Selectionnez un role</option>
+                                        <option value="{{role.id}}" *ngFor="let role of roles">
+                                            {{role.libelle}}</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.role">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.role}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group-form">
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" id="password" formControlName="password"
+                                        placeholder="Mot de passe" [class.error]="errors.password">
+                                    <div class="error" *ngIf="errors.password">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.password}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-btn">
+                            <button type="submit" (click)="sauvegarder()" [disabled]="isAdding">Sauvegarder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="btn-content pd-10" *ngIf="auth.caher('ADMIN.ADD')">
+                <button type="button" (click)="activeModal()">Ajouter un administrateur</button>
+            </div>
+
+            <div class="tableaux pd-10">
+                <div class="loading-table" [class.active]="!isLoadindTable">
+                    <div>
+                    </div>
+                </div>
+
+                <div class="header-content">
+                    <h2>Liste des administrateurs</h2>
+
+                    <div class="group-form">
+                        <input type="text" name="nom" [(ngModel)]="nom" (ngModelChange)="search()"
+                            placeholder="Rechercher par le nom">
+                        <span class="icon-search"></span>
+                    </div>
+                </div>
+
+                <div class="table">
+                    <table class="wd-1000">
+                        <thead>
+                            <th (click)="sort('id')">#ID <span class="icon-sort-number-up"></span></th>
+                            <th (click)="sort('name')">Nom <span class="icon-sort-name-up"></span></th>
+                            <th (click)="sort('email')">Email <span class="icon-sort-name-up"></span></th>
+                            <th (click)="sort('telephone')">Téléphone <span class="icon-sort-number-up"></span></th>
+                            <th>Role</th>
+                            <th>Permissions</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let admin of admins | orderBy: key : reverse | paginate : {itemsPerPage:6,currentPage:p}">
+                                <td>{{admin.id}}</td>
+                                <td>
+                                    <div class="td-flex">
+                                        <span>{{admin.name}}</span>
+                                    </div>
+                                </td>
+                                <td>{{admin.email}}</td>
+                                <td>{{admin.telephone}}</td>
+                                <td>
+                                    {{admin.role}}
+                                </td>
+                                <td>
+                                    <p *ngFor="let perm of admin.permissions"> {{perm.libelle}}</p>
+                                </td>
+                                <td>
+                                    <div class="details-box">
+                                        <div class="detail-dropup" (click)="stop($event)" id="dropup-{{admin.id}}">
+                                            <label class="check-bar-container">
+                                                <input type="checkbox" (change)="activer(admin.id)" hidden
+                                                    [checked]="admin.status">
+                                                <div class="check-bar"></div>
+                                                <div class="check-circle"></div>
+                                            </label>
+
+                                            <button type="button" (click)="show(admin.id)" *ngIf="auth.caher('ADMIN.EDIT')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
+                                                    viewBox="0 0 512 512">
+                                                    <polygon
+                                                        points="358.62 129.28 86.49 402.08 70 442 109.92 425.51 382.72 153.38 358.62 129.28"
+                                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:44px" />
+                                                    <path
+                                                        d="M413.07,74.84,401.28,86.62l24.1,24.1,11.79-11.79a16.51,16.51,0,0,0,0-23.34l-.75-.75A16.51,16.51,0,0,0,413.07,74.84Z"
+                                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:44px" />
+                                                </svg>
+                                            </button>
+
+                                            <button type="button" (click)="delete(admin.id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
+                                                    viewBox="0 0 512 512">
+                                                    <rect x="32" y="48" width="448" height="80" rx="32" ry="32" />
+                                                    <path
+                                                        d="M74.45,160a8,8,0,0,0-8,8.83L92.76,421.39a1.5,1.5,0,0,0,0,.22A48,48,0,0,0,140.45,464H371.54a48,48,0,0,0,47.67-42.39l0-.21,26.27-252.57a8,8,0,0,0-8-8.83ZM323.31,340.69a16,16,0,1,1-22.63,22.62L256,318.63l-44.69,44.68a16,16,0,0,1-22.63-22.62L233.37,296l-44.69-44.69a16,16,0,0,1,22.63-22.62L256,273.37l44.68-44.68a16,16,0,0,1,22.63,22.62L278.62,296Z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <span class="icon" (click)="tooltip(admin.id,$event)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"
+                                                viewBox="0 0 512 512">
+                                                <circle cx="256" cy="256" r="48" />
+                                                <circle cx="416" cy="256" r="48" />
+                                                <circle cx="96" cy="256" r="48" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <pagination-controls (pageChange)=" p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+@media screen and (max-width: 1190px) {
+  button,
+  tr,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+}
+
+@media screen and (min-width: 300px) and (max-width: 630px) {
+  .contents .header-content {
+    flex-wrap: wrap;
+  }
+
+  .contents .header-content h2 {
+    width: 100%;
+  }
+
+  .contents .header-content .date-h {
+    margin-top: 20px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal .card-wrapper {
+    width: 100%;
+  }
+
+  .card-wrapper .card-form {
+    padding: 20px 20px 30px;
+  }
+
+  .card-form .group-form .input-flex {
+    flex-wrap: wrap;
+  }
+
+  .card-form .group-form .input-flex .input {
+    width: 100%;
+  }
+
+  .card-form .group-form .input-flex .input:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  /*----------  Tableaux  ----------*/
+  /*----------  Tableaux  ----------*/
+
+  .tableaux .group-form {
+    margin-top: 30px;
+  }
+
+  .tableaux .table .wd-1000 {
+    width: 1000px;
+  }
+
+  .tableaux .table .wd-1200 {
+    width: 1200px;
+  }
+
+  .tableaux .table .wd-1400 {
+    width: 1400px;
+  }
+
+  .tableaux .table .wd-1600 {
+    width: 1600px;
+  }
+
+  /*----------  Tableaux  ----------*/
+  /*----------  Tableaux  ----------*/
+}
+
+@media screen and (max-width: 989px) {
+  .loading-table {
+    top:-18px;
+    height:400px;
+  }
+
+  .wrapper.active,
+  .wrapper {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 58px;
+  }
+
+  .wrapper .wrapper-content {
+    width: 100%;
+    padding: 20px 20px 40px;
+    transition: all 0.4s ease 0s;
+  }
+
+  .pd-10 {
+    padding: 0;
+  }
+
+  .header-responsive {
+    display: flex;
+    padding: 20px;
+  }
+
+  /*----------  Tableaux  ----------*/
+  /*----------  Tableaux  ----------*/
+
+  .tableaux .table .wd-1000 {
+    width: 1000px;
+  }
+
+  .tableaux .table .wd-1200 {
+    width: 1200px;
+  }
+
+  .tableaux .table .wd-1400 {
+    width: 1400px;
+  }
+
+  .tableaux .table .wd-1600 {
+    width: 1600px;
+  }
+
+  /*----------  Tableaux  ----------*/
+  /*----------  Tableaux  ----------*/
+}
+
+@media screen and (min-width: 990px) and (max-width: 1198px) {
+  .nav-container {
+    width: 70px;
+  }
+
+  .wrapper {
+    margin-left: 70px;
+  }
+
+  .wrapper .wrapper-content {
+    width: 100%;
+    padding: 20px 20px 40px;
+  }
+
+  /*----------  Tableaux  ----------*/
+  /*----------  Tableaux  ----------*/
+
+  .tableaux .table .wd-1000 {
+    width: 1000px;
+  }
+
+  .tableaux .table .wd-1200 {
+    width: 1200px;
+  }
+
+  .tableaux .table .wd-1400 {
+    width: 1400px;
+  }
+
+  .tableaux .table .wd-1600 {
+    width: 1600px;
+  }
+
+  /*----------  Tableaux  ----------*/
+  /*----------  Tableaux  ----------*/
+}

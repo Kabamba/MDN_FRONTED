@@ -1,0 +1,161 @@
+.stats-blocs {
+  width: 100%;
+  position: relative;
+  margin-top: 50px;
+}
+
+.stats-blocs .stats-flex {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stats-blocs .stats-flex .stat-bloc {
+  width: calc(calc(100% / 4) - 20px);
+  background: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+  margin: 0 10px;
+  margin-bottom: 20px;
+  transition: background 0.4s ease 0.1s;
+}
+
+.stats-blocs .stats-flex .stat-bloc .stat-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease 0s;
+}
+
+.stats-blocs .stats-flex .stat-bloc .icon {
+  width: 50px;
+  height: 50px;
+  line-height: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #62cb6234;
+  margin-right: 10px;
+}
+
+.stats-blocs .stats-flex .stat-bloc .icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.stats-blocs .stats-flex .stat-bloc .icon svg path {
+  fill: #62cb62;
+}
+
+.stats-blocs .stats-flex .stat-bloc .stat-header .title {
+  display: block;
+  font-family: "SourcePro-Medium";
+  width: 70%;
+}
+
+.stats-blocs .stats-flex .stat-bloc .stat-body {
+  margin-top: 20px;
+}
+
+.stats-blocs .stats-flex .stat-bloc .stat-body h1 {
+  font-size: 40px;
+  transition: all 0.3s ease 0s;
+}
+
+.chart-content {
+  width: 100%;
+  background: var(--white);
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-top: 50px;
+  transition: all 0.4s ease 0.1s;
+}
+
+.chart-header,
+.chart-content .chart-title {
+  border-bottom: 1px solid var(--sidebar-border);
+  transition: all 0.4s ease 0.1s;
+  padding: 20px;
+}
+
+.chart-content .chart-box {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+}
+
+.charts-pies {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.chart {
+  background: var(--white);
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  transition:background .4s ease .1;
+  width: 49%;
+}
+
+.chart-content canvas {
+  height: 100%;
+}
+
+.charts-pies .chart-body{
+  width:100%;
+  padding:20px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 630px) {
+  .stats-blocs .stats-flex {
+    width: 100%;
+  }
+
+  .stats-blocs .stats-flex .stat-bloc {
+    width: 100% !important;
+    margin: 0 0 20px !important;
+  }
+
+  .chart-content .chart-box #myChart {
+    height: 100% !important;
+  }
+
+  .chart {
+    width:100%;
+    margin-bottom:20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stats-blocs .stats-flex .stat-bloc {
+    width: calc(calc(100% / 3) - 20px);
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1198px) {
+  .stats-blocs .stats-flex .stat-bloc {
+    width: calc(calc(100% / 3) - 10px);
+    margin: 0 5px;
+    margin-bottom: 20px;
+  }
+
+  .chart-content .chart-box #myChart {
+    height: 300px !important;
+  }
+
+  .stats-blocs .stats-flex .stat-bloc .stat-header .title {
+    width: 66%;
+  }
+}
+
+@media screen and (min-width: 1290px) and (max-width: 1366px) {
+  .stats-blocs .stats-flex .stat-bloc {
+    width: calc(calc(100% / 3) - 20px);
+  }
+}

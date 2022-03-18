@@ -1,0 +1,133 @@
+<app-nav-left (wrapper)="wrapper($event)" [addActive]="addActive"></app-nav-left>
+
+
+<div class="wrapper" [class.active]="isWrapper">
+    <div class="header-responsive">
+        <div class="logo">
+            <h2><em>MDN<span> admin</span></em></h2>
+        </div>
+
+        <div class="toggle" (click)="toggle($event)">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="wrapper-content">
+        <app-search-bar (night)="night($event)"></app-search-bar>
+        <div class="contents">
+            <div class="loader" [class.active]="isLoading">
+                <img src="../../../assets/ressources/loader/loader.gif" alt="">
+            </div>
+
+            <div class="tableaux pd-10">
+                <!-- <div class="loading-table" [class.active]="!isLoadindTable">
+                    <div>
+                    </div>
+                </div>
+                 -->
+                <div class="header-content" *ngIf="doctor">
+                    <h2>Disponibilité du docteur {{doctor.name}}</h2>
+                </div>
+
+                <div class="table wd-1200">
+
+                    <table class="wd-1000">
+                        <thead>
+                            <th (click)="sort('day')">Jour <span class="icon-sort-name-up"></span></th>
+                            <th (click)="sort('heure_deb')">Heure début <span class="icon-sort-number-up"></span></th>
+                            <th (click)="sort('heure_fin')">Heure fin <span class="icon-sort-number-up"></span></th>
+                            <th (click)="sort('max_patient')">Nombre de patients du jour<span class="icon-sort-number-up"></span></th>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let dispo of dispos | orderBy: key : reverse">
+                                <td>{{dispo.libelle}}</td>
+                                <td>{{dispo.pivot.heure_deb}}</td>
+                                <td>{{dispo.pivot.heure_fin}}</td>
+                                <td>{{dispo.pivot.max_patient}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="disponibility pd-10">
+                <form [formGroup]="brandForm" class="form-dispo" autocomplete="off">
+
+                    <div class="dispo-title">
+                        <h3>Configurer la disponibilité</h3>
+                    </div>
+
+                    <div class="dispo-flex">
+                        <div class="dispo-box">
+                            <div class="group-form">
+                                <label for="jour">Choisissez un jour</label>
+                                <select id="day" formControlName="day" (change)="getScheduleDay()">
+                                    <option value="1">Lundi</option>
+                                    <option value="2">Mardi</option>
+                                    <option value="3">Mercredi</option>
+                                    <option value="4">Jeudi</option>
+                                    <option value="5">Vendredi</option>
+                                    <option value="6">Samedi</option>
+                                    <option value="0">Dimanche</option>
+                                </select>
+                                <p *ngIf="errors.day">
+                                    {{errors.day}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dispo-box">
+                            <div class="group-form">
+                                
+                                <div class="input-flex">
+                                    <div class="group-form">
+                                        <label>Disponibilité</label>
+                                        <label class="check-content">
+                                            <input type="checkbox" id="dispo" formControlName="dispo">
+                                            <div class="check-body">
+                                                <div class="check-circle"></div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div class="group-form">
+                                        <label for="patient">Nombre patient</label>
+                                        <input type="number" id="patient" formControlName="max_pat">
+                                        <div class="error" *ngIf="errors.max_pat">
+                                            <span class="icon-attention"></span>
+                                            <span class="title">{{errors.max_pat}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-flex">
+                                    <div class="group-form">
+                                        <label for="heure_deb">Heure de début</label>
+                                        <input type="time" id="heure_deb" formControlName="heure_deb">
+                                        <div class="error" *ngIf="errors.heure_deb">
+                                            <span class="icon-attention"></span>
+                                            <span class="title">{{errors.heure_deb}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="group-form">
+                                        <label for="heure_fin">Heure de fin</label>
+                                        <input type="time" id="heure_fin" formControlName="heure_fin">
+                                        <div class="error" *ngIf="errors.heure_fin">
+                                            <span class="icon-attention"></span>
+                                            <span class="title">{{errors.heure_fin}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <button type="submit" (click)="saveSchedule()" [disabled]="isLoading">Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

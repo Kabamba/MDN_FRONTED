@@ -1,0 +1,244 @@
+.nav-container {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  transition:width .4s ease-in-out .1s, all .4s ease 0.1s;
+  z-index:20;
+}
+
+
+.nav-container nav{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+  overflow:scroll;
+}
+
+.nav-container .nav-links {
+  width:100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding:0 20px;
+  transition:.4s ease .1s;
+}
+
+.nav-container .nav-links .toggle {
+  align-self: flex-start;
+  cursor: pointer;
+  margin: 20px 0 20px;
+  padding:13px 14px;
+  border-radius: 10px;
+  transition: all 0.3s ease 0s;
+}
+
+.nav-container .nav-links .toggle:hover {
+  background: var(--hover-links);
+}
+
+.nav-container .nav-links .toggle span {
+  display: block;
+  width: 28px;
+  height: 4px;
+  background-color: #9ca8ba;
+  border-radius: 3px;
+}
+
+.nav-container .nav-links .toggle:hover span {
+  background-color: #4ca6a8;
+}
+
+.nav-container .nav-links .toggle span:not(:last-child) {
+  margin-bottom: 3px;
+}
+
+.nav-container .nav-links .toggle span:last-child {
+  width: 14px;
+}
+
+.nav-container .nav-links a {
+  display: flex;
+  align-items: center;
+  line-height: 0px;
+  width: 100%;
+  padding:13px 15px;
+  color: var(--color-links);
+  cursor:pointer;
+  border-radius: 10px;
+  font-family: "SourcePro-Medium";
+}
+
+.nav-container .nav-links a:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.nav-container .nav-links .active,
+.nav-container .nav-links a:hover {
+  background: var(--hover-links);
+}
+
+.nav-container .nav-links a .icon {
+  margin-right: 20px;
+}
+
+.nav-container .nav-links a .icon svg path,
+.nav-container .nav-links a .icon svg circle,
+.nav-container .nav-links a .icon svg polyline,
+.nav-container .nav-links a .icon svg line {
+  fill: var(--color-svg);
+  stroke: var(--color-svg) !important;
+}
+
+.nav-container .nav-links .active .icon svg path,
+.nav-container .nav-links .active .icon svg circle,
+.nav-container .nav-links .active .icon svg polyline,
+.nav-container .nav-links a:hover .icon svg path,
+.nav-container .nav-links a:hover .icon svg circle,
+.nav-container .nav-links a:hover .icon svg polyline,
+.nav-container .nav-links a:hover .icon svg line {
+  fill: #4ca6a8;
+  stroke:#4ca6a8 !important;
+}
+
+.nav-container a .title{
+  transition:.3s .3s;
+}
+
+.profil {
+  width:100%;
+  border-top: 1px solid var(--sidebar-border);
+  padding:20px;
+  transition:.3s;
+}
+
+.profil .profil-content{
+  display:flex;
+  align-items:center;
+  width:200px;
+  transition:.3s;
+}
+
+
+.profil .profil-circle-name {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "SourcePro-Medium";
+  font-size: 17px;
+  text-transform: uppercase;
+  background:var(--hover-links);
+  color: #4ca6a8;
+  line-height: 0px;
+  margin-right:20px;
+  transition:background .4s ease 0.1s;
+}
+
+.profil .profil-name {
+  text-transform: capitalize;
+  font-size: 18px;
+  display: block;
+  transition:.3s;
+  display:block;
+}
+
+.profil .profil-name span {
+  color: #9ca8ba;
+  display: block;
+}
+
+.nav-container.active{
+  width: 75px;
+}
+
+.nav-container.active .nav-links{
+  padding:0 10px;
+}
+
+.nav-container.active .nav-links .title{
+  margin-left:30px;
+  opacity:0;
+  visibility:hidden;
+}
+
+.nav-container.active .profil{
+  padding-left:14px;
+}
+
+.nav-container.active .profil .profi-name{
+  opacity:0;
+}
+
+
+@media screen and (min-width:300px) and (max-width: 950px) {
+  .nav-container{
+    transform: translateX(-400px);
+    transition: transform 0.3s ease-in-out 0s;
+  }
+
+  .nav-container.addActive {
+    transform: translateX(0px);
+    width:240px;
+  }
+}
+
+
+@media screen and (min-width:960px) and (max-width:1198px){
+    .nav-container{
+      width: 75px;
+      display:flex;
+    }
+    
+    .nav-container .nav-links{
+      padding:0 10px;
+    }
+    
+    .nav-container .nav-links .title{
+      margin-left:30px;
+      opacity:0;
+      visibility:hidden;
+    }
+    
+    .nav-container .profil{
+      padding-left:14px;
+    }
+    
+    .nav-container .profil .profi-name{
+      opacity:0;
+    }
+
+    /* ============================= Avec Active ================================== */
+    /* ============================= Avec Active ================================== */
+    
+    .nav-container.active{
+      width: 240px;
+    }
+    
+    .nav-container.active .nav-links{
+      padding:0 20px;
+    }
+    
+    .nav-container.active .nav-links .title{
+      margin-left:0px;
+      opacity:1;
+      visibility:visible;
+    }
+    
+    .nav-container.active .profil{
+      padding:20px;
+    }
+    
+    .nav-container.active .profil .profi-name{
+      opacity:1;
+    }
+    
+    
+}

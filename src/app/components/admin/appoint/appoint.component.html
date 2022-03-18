@@ -1,0 +1,410 @@
+<app-nav-left app-nav-left (wrapper)="wrapper($event)" [addActive]="addActive"></app-nav-left>
+
+<div class="wrapper" [class.active]="isWrapper">
+    <div class="header-responsive">
+        <div class="logo">
+            <h2><em>MDN<span> admin</span></em></h2>
+        </div>
+
+        <div class="toggle" (click)="toggle($event)">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="wrapper-content">
+        <app-search-bar (night)="night($event)"></app-search-bar>
+        <div class="contents">
+
+            <!-- Modal Detail Ajout -->
+            <!-- Modal Detail Ajout -->
+
+            <div class="modal" role="dialog" aria-modal="true" [class.active]="showModal" (click)="closeModal()">
+                <div class="card-wrapper" (click)="stop($event)">
+                    <!-- Loading -->
+                    <!-- Loading -->
+                    <div class="loading-table loading-modal" [class.active]="!isAdding">
+                        <div>
+                        </div>
+                    </div>
+                    <!-- Loading -->
+                    <!-- Loading -->
+
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <div class="card-header">
+                        <h3>Rendez-vous</h3>
+                        <span class="icon" (click)="closeModal()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                <path
+                                    d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+
+
+                    <div class="card-form">
+                        <div class="card-title">
+                            <h3>Ajouter un rendez-vous</h3>
+                        </div>
+
+                        <div class="group-form">
+                            <div class="input">
+                                <label for="search">Rechercher le patient </label>
+                                <input type="text" id="search" placeholder="Nom , Prénom ou matricule"
+                                    [(ngModel)]="searchWord" name="searchWord" (ngModelChange)="getPatient()"
+                                    autocomplete="off">
+                                <span *ngIf="isSearching">Chargement ...</span>
+                                <div *ngIf="closeList" class="autoComplete">
+
+                                    <p *ngFor="let patient of patients"
+                                        (click)="patientInfos(patient.id,patient.name,patient.prenom,patient.matricule,patient.telephone)">
+                                        {{patient.name}} - {{patient.prenom}} - {{patient.matricule}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form [formGroup]="brandForm" autocomplete="off">
+                            <input type="hidden" id="id" formControlName="id">
+
+                            <div class="group-form">
+                                <div class="input-flex">
+                                    <div class="input">
+                                        <label for="name">Nom</label>
+                                        <input type="text" id="name" formControlName="name">
+                                    </div>
+                                    <div class="input">
+                                        <label for="prenom">Prénom</label>
+                                        <input type="text" id="prenom" formControlName="prenom">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group-form">
+                                <div class="input-flex">
+                                    <div class="input">
+                                        <label for="matricule">Matricule</label>
+                                        <input type="text" id="matricule" formControlName="matricule">
+                                    </div>
+                                    <div class="input">
+                                        <label for="telephone">Numéro de téléphone</label>
+                                        <input type="text" id="telephone" formControlName="telephone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group-form">
+                                <div class="input-flex">
+                                    <div class="input">
+                                        <label for="date">Choisissez la date du rendez-vous</label>
+                                        <input type="datetime-local" id="date" formControlName="date"
+                                            [class.error]="errors.date_heure_appoint">
+                                        <div class="error" *ngIf="errors.date_heure_appoint">
+                                            <span class="icon-attention"></span>
+                                            <span class="title">{{errors.date_heure_appoint}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="input">
+                                        <label for="docteur">Docteur</label>
+                                        <select id="docteur" formControlName="docteur" [class.error]="errors.doctor_id">
+                                            <option value="">Selectionnez un docteur</option>
+                                            <option *ngFor="let doctor of doctors" value="{{doctor.id}}">{{doctor.name}}
+                                            </option>
+                                        </select>
+                                        <div class="error" *ngIf="errors.doctor_id">
+                                            <span class="icon-attention"></span>
+                                            <span class="title">{{errors.doctor_id}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group-form">
+                                <label for="motif">Motif du rendez-vous</label>
+                                <select name="" id="motif" formControlName="motif" [class.error]="errors.motif">
+                                    <option value="{{motif.id}}" *ngFor="let motif of motifs">{{motif.libelle}}</option>
+                                </select>
+                                <div class="error" *ngIf="errors.motif">
+                                    <span class="icon-attention"></span>
+                                    <span class="title">{{errors.motif}}</span>
+                                </div>
+                            </div>
+
+                            <div class="group-form">
+                                <label for="description">Description</label>
+                                <textarea id="description" formControlName="description" cols="30" rows="2"
+                                    placeholder="Description" [class.error]="errors.description"></textarea>
+                                <div class="error" *ngIf="errors.description">
+                                    <span class="icon-attention"></span>
+                                    <span class="title">{{errors.description}}</span>
+                                </div>
+                            </div>
+
+                            <div class="form-btn">
+                                <button type="submit" (click)="sauvegarder()" [disabled]="isAdding">Ajouter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Detail Ajout -->
+            <!-- Modal Detail Ajout -->
+
+            <!-- Modal Detail -->
+            <!-- Modal Detail -->
+
+            <div class="modal active" role="dialog" aria-modal="true" [class.active]="activeDetail"
+                (click)="closeModal()">
+
+                
+                <div class="card-wrapper" (click)="stop($event)">
+
+                    <!-- Loading -->
+                    <!-- Loading -->
+                    <div class="loading-table" [class.active]="detail">
+                        <div>
+                        </div>
+                    </div>
+                    
+                    <!-- Loading -->
+                    <!-- Loading -->
+
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <div class="card-header">
+                        <h3>Détail rendez-vous</h3>
+                        <span class="icon" (click)="closeModal()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                <path
+                                    d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <!-- Card Header Modal -->
+                    <!-- Card Header Modal -->
+
+                    <div class="card-form">
+                        <div class="card-title">
+                            <h2><em>MDN<span>rdv</span></em></h2>
+                        </div>
+
+                        <div class="card-body" *ngIf="detail">
+                            <div class="card-body-box">
+                                <div class="card-body-title">
+                                    <h3>Informations du patient</h3>
+                                </div>
+
+                                <div class="card-body-wrapper">
+                                    <p><strong>Nom </strong> : {{detail.patient_name}}</p>
+                                    <p><strong>Prénom </strong> : {{detail.patient_prenom}}</p>
+                                    <p><strong>Téléphone </strong> : {{detail.patient_telephone}}</p>
+                                    <p><strong>Adresse email </strong> : {{detail.patient_email}}</p>
+                                </div>
+                            </div>
+
+                            <div class="card-body-box">
+                                <div class="card-body-title">
+                                    <h3>Informations du rendez-vous</h3>
+                                </div>
+
+                                <div class="card-body-wrapper">
+                                    <p><strong>Date du rendez-vous </strong> : <span>{{detail.date}}</span></p>
+                                    <p><strong>Motif</strong> : {{detail.motif}}</p>
+                                    <p><strong>Docteur </strong> : {{detail.doctor_name}}</p>
+                                    <!-- <p><strong>Statut </strong> : {{detail.approved == 1 ? 'Approuvé' : 'Désapprouvé'}}
+                                    </p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Detail -->
+            <!-- Modal Detail -->
+            <div class="btn-content pd-10" *ngIf="user.admin_level == 1">
+                <button type="button" (click)="activeModal()">Ajouter un rendez-vous</button>
+            </div>
+
+            <div class="tableaux pd-10">
+                <div class="loading-table" [class.active]="!isLoadindTable" style="top:-20px;">
+                    <div>
+                    </div>
+                </div>
+
+                <form post="" method="" class="rendez-vous pd-10">
+                    <div class="header-content">
+                        <h2>Liste des rendez-vous</h2>
+                    </div>
+                    <div class="rendez-content">
+                        <div class="rendez-bloc">
+                            <div class="r-title">
+                                <h4>Rendez-vous actuels</h4>
+                                <span class="icon-sort-down"></span>
+                            </div>
+
+                            <div class="rendez-bloc-2">
+                                <div class="group-form">
+                                    <input type="text" name="" id="" placeholder="Rechercher ici..">
+                                    <span class="icon-search"></span>
+                                </div>
+
+                                <div class="group-select">
+                                    <label for="lignes">Nombre des lignes</label>
+                                    <select name="" id="lignes">
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                    </select>
+                                </div>
+
+                                <div class="rendez-box" *ngFor="let today of todays">
+                                    <div class="rendez-profil">
+                                        <div class="r-circle">
+                                            <p>{{today.patient_initial}}</p>
+                                        </div>
+                                        <div class="r-text">
+                                            <h4>{{today.patient_name}}</h4>
+                                            <p><span class="icon-user-md"></span><strong>dr
+                                                    {{today.doctor_name}}</strong></p>
+                                            <p><span class="icon-calendar-6"></span>{{today.date}}</p>
+
+                                            <p><span class="icon-info-circled-2"></span>{{today.approved == 0 ? 'Non
+                                                approuvé' : 'Approuvé'}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="rendez-body">
+                                        <a (click)="showDetail(today.id)" class="btn-rdv" title="Détail">Détails</a>
+
+                                        <a (click)="approuver(today.id)" class="btn-rdv" title="Approuver"
+                                            *ngIf="today.approved == 0 && user.admin_level == 2">Approuver</a>
+
+                                        <!-- <a href="#" class="btn-rdv" title="Remplacer"><span
+                                                class="icon-spin3"></span></a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rendez-bloc">
+                            <div class="r-title">
+                                <h4>Rendez-vous futures</h4>
+                                <span class="icon-sort-down"></span>
+                            </div>
+
+                            <div class="rendez-bloc-2">
+                                <div class="group-form">
+                                    <input type="text" [(ngModel)]="searchFuture" (ngModelChange)="search()" name="searchFuture" placeholder="Rechercher ici..">
+                                    <span class="icon-search"></span>
+                                </div>
+
+                                <div class="group-select">
+                                    <label for="lignes">Nombre des lignes</label>
+                                    <select name="" id="lignes">
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                    </select>
+                                </div>
+
+                                <div class="rendez-box" *ngFor="let future of futures">
+                                    <div class="rendez-profil">
+                                        <div class="r-circle">
+                                           
+                                            <p>{{future.patient_initial}}</p>
+                                        </div>
+                                        <div class="r-text">
+                                            <h4>{{future.patient_name}}</h4>
+                                            <p><span class="icon-user-md"></span><strong>dr
+                                                    {{future.doctor_name}}</strong></p>
+                                            <p><span class="icon-calendar-6"></span>{{future.date}}</p>
+
+                                            <p><span class="icon-info-circled-2"></span>{{future.approved == 0 ? 'Non
+                                                approuvé' : 'Approuvé'}}</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="rendez-body">
+
+                                        <a (click)="showDetail(future.id)" class="btn-rdv" title="Détail">Détails</a>
+                                        <!-- <a href="#" class="btn-rdv" title="Remplacer"><span
+                                                class="icon-spin3"></span></a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rendez-bloc">
+                            <div class="r-title">
+                                <h4>Rendez-vous passés</h4>
+                                <span class="icon-sort-down"></span>
+                            </div>
+                            <div class="rendez-bloc-2">
+                                <div class="group-form">
+                                    <input type="text" name="" id="" placeholder="Rechercher ici..">
+                                    <span class="icon-search"></span>
+                                </div>
+
+                                <div class="group-select">
+                                    <label for="lignes">Nombre des lignes</label>
+                                    <select name="" id="lignes">
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                        <option value="">25</option>
+                                    </select>
+                                </div>
+
+                                <div class="rendez-box" *ngFor="let last of lasts">
+                                    <div class="rendez-profil">
+                                        <div class="r-circle">
+                                            <p>{{last.patient_initial}}</p>
+                                        </div>
+                                        <div class="r-text">
+                                            <h4>{{last.patient_name}}</h4>
+                                            <p><span class="icon-user-md"></span><strong>dr
+                                                    {{last.doctor_name}}</strong></p>
+                                            <p><span class="icon-calendar-6"></span>{{last.date}}</p>
+
+                                            <p><span class="icon-info-circled-2"></span>{{last.approved == 0 ? 'Non
+                                                approuvé' : 'Approuvé'}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="rendez-body">
+                                        <a (click)="showDetail(last.id)" class="btn-rdv" title="Détail">Détails</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
