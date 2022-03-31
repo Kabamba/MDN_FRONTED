@@ -136,7 +136,7 @@ export class RoleComponent implements OnInit {
 
     for (var i = 0; i < inputs.length; i++) {
       if (inputs[i].type == 'checkbox') {
-        if (inputs[i].checked) {
+        if (inputs[i].checked && inputs[i].value != "on") {
           selected.push(inputs[i].value);
         }
       }

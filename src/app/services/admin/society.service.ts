@@ -12,6 +12,10 @@ export class SocietyService {
     return this.http.get(environment.apiUrl + '/admin/societies/list');
   }
 
+  SocietePerCategorie(id) {
+    return this.http.get(environment.apiUrl + `/admin/societies/categorie/${id}`);
+  }
+
   ajouter(libelle, category_id) {
     return this.http.post(environment.apiUrl + '/admin/societies/store', {
       libelle: libelle,

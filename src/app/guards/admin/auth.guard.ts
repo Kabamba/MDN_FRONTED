@@ -14,10 +14,9 @@ export class AuthGuard implements CanActivate {
     return this.auth.statut().pipe(
       map((LoggedIn:boolean) =>{
         if(LoggedIn){
-          // const permission = route.data['permission'];
-          // const permissions = this.auth.getPerms();
-          // return permissions.includes(permission);
-          return true
+          const permission = route.data['permission'];
+          const permissions = this.auth.getPerms();
+          return permissions.includes(permission);
         }else{
           return this.router.navigate(['/admin/login']);
         }

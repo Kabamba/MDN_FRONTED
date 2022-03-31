@@ -34,6 +34,7 @@ import { SocietyComponent } from './components/admin/society/society.component';
 import { GrilleComponent } from './components/admin/grille/grille.component';
 import { RoleComponent } from './components/admin/role/role.component';
 import { PermissionsComponent } from './components/admin/permissions/permissions.component';
+import { PatientComponent } from './components/admin/patient/patient.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { PermissionsComponent } from './components/admin/permissions/permissions
     GrilleComponent,
     RoleComponent,
     PermissionsComponent,
+    PatientComponent,
   ],
   imports: [
     BrowserModule,

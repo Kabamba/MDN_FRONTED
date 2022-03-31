@@ -19,6 +19,7 @@ import { CategoryComponent } from './components/admin/category/category.componen
 import { GrilleComponent } from './components/admin/grille/grille.component';
 import { RoleComponent } from './components/admin/role/role.component';
 import { PermissionsComponent } from './components/admin/permissions/permissions.component';
+import { PatientComponent } from './components/admin/patient/patient.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'admin/login', pathMatch: 'full' },
@@ -30,7 +31,7 @@ const routes: Routes = [
     path: 'admin/home',
     canActivate: [AuthGuard, IsActiveGuard],
     component: HomeComponent,
-    data: { permission:'ADMIN.LIST'},
+    data: { permission:'HOME.STAT'},
   }, 
   {
     path: 'admin/admins',
@@ -121,6 +122,12 @@ const routes: Routes = [
     canActivate: [AuthGuard, IsActiveGuard],
     component: GrilleComponent,
     data: { permission:'GRILLE.LIST'},
+  },
+  {
+    path: 'admin/patients',
+    canActivate: [AuthGuard, IsActiveGuard],
+    component: PatientComponent,
+    data: { permission:'PATIENT.LIST'},
   },
   { path: '**', component: LoginComponent },
 ];
