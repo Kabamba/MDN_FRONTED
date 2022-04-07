@@ -20,6 +20,7 @@ import { GrilleComponent } from './components/admin/grille/grille.component';
 import { RoleComponent } from './components/admin/role/role.component';
 import { PermissionsComponent } from './components/admin/permissions/permissions.component';
 import { PatientComponent } from './components/admin/patient/patient.component';
+import { SeePermissionsComponent } from './components/admin/see-permissions/see-permissions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'admin/login', pathMatch: 'full' },
@@ -129,6 +130,8 @@ const routes: Routes = [
     component: PatientComponent,
     data: { permission:'PATIENT.LIST'},
   },
+
+  {path: 'admin/see-permissions', component:SeePermissionsComponent},
   { path: '**', component: LoginComponent },
 ];
 

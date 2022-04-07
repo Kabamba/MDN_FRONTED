@@ -7,9 +7,11 @@
 
 .login-flex{
     width:100%;
+    height:100vh;
     position:relative;
     display:flex;
     flex-wrap:wrap;
+    align-items:center;
 }
 
 

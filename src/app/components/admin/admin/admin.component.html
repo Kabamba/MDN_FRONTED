@@ -168,7 +168,8 @@
                                     {{admin.role}}
                                 </td>
                                 <td>
-                                    <p *ngFor="let perm of admin.permissions"> {{perm.libelle}}</p>
+                                    <a routerLink="/admin/see-permissions" class="btn-permi">Permissions</a>
+                                    <!-- <p *ngFor="let perm of admin.permissions"> {{perm.libelle}}</p> -->
                                 </td>
                                 <td>
                                     <div class="details-box">

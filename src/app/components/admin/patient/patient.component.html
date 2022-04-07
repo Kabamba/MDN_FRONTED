@@ -33,7 +33,8 @@
                         <h3>Patients</h3>
                         <span class="icon" (click)="closeModal()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-                                <path d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z" />
+                                <path
+                                    d="M289.94,256l95-95A24,24,0,0,0,351,127l-95,95-95-95A24,24,0,0,0,127,161l95,95-95,95A24,24,0,1,0,161,385l95-95,95,95A24,24,0,0,0,385,351Z" />
                             </svg>
                         </span>
                     </div>
@@ -49,254 +50,253 @@
                         <input type="hidden" id="id" formControlName="id">
 
                         <div class="group-form">
-                            <div class="input">
-                                <label for="nom">Nom </label>
-                                <input type="text" id="nom" formControlName="nom" placeholder="Nom du patient"
-                                    [class.error]="errors.nom">
-                                <div class="error" *ngIf="errors.nom">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.nom}}</span>
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="nom">Nom </label>
+                                    <input type="text" id="nom" formControlName="nom" placeholder="Nom du patient"
+                                        [class.error]="errors.nom">
+                                    <div class="error" *ngIf="errors.nom">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.nom}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="prenom">Prénom </label>
+                                    <input type="text" id="prenom" formControlName="prenom"
+                                        placeholder="Prénom du patient" [class.error]="errors.prenom">
+                                    <div class="error" *ngIf="errors.prenom">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.prenom}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="sexe">Sexe</label>
+                                    <select id="sexe" formControlName="sexe" [class.error]="errors.sexe">
+                                        <option value="0">Selectionnez une sexe</option>
+                                        <option value="M">M</option>
+                                        <option value="F">F</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.sexe">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.sexe}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="date">Date de naissance </label>
+                                    <input type="date" id="date" formControlName="date_naiss"
+                                        [class.error]="errors.date_naiss">
+                                    <div class="error" *ngIf="errors.date_naiss">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.date_naiss}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="group-form">
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="lieu">Lieu de naissance </label>
+                                    <input type="text" id="lieu" formControlName="lieu_naiss"
+                                        [class.error]="errors.lieu_naiss">
+                                    <div class="error" *ngIf="errors.lieu_naiss">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.lieu_naiss}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="pays_natal">Pays natal du patient</label>
+                                    <select id="pays_natal" formControlName="pays_natal"
+                                        [class.error]="errors.pays_natal">
+                                        <option value="0">Selectionnez un pays</option>
+                                        <option value="{{pay.id}}" *ngFor="let pay of pays">{{pay.name}}</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.pays_natal">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.pays_natal}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="category">Catégorie du patient</label>
+                                    <select id="category" formControlName="category" [class.error]="errors.category"
+                                        (change)="loadSociety()">
+                                        <option value="0">Selectionnez une catégorie</option>
+                                        <option value="{{category.id}}" *ngFor="let category of categories">
+                                            {{category.libelle}}</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.category">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.category}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="society">Société du patient</label>
+                                    <select id="society" formControlName="society" [class.error]="errors.society">
+                                        <option value="0">Selectionnez une société</option>
+                                        <option value="{{society.name}}" *ngFor="let society of societies">
+                                            {{society.libelle}}</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.society">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.society}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="group-form">
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="dossier">Numéro du dossier </label>
+                                    <input type="text" id="dossier" formControlName="num_dossier"
+                                        [class.error]="errors.num_dossier">
+                                    <div class="error" *ngIf="errors.num_dossier">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.num_dossier}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="archive">Numéro de la carte d'identité</label>
+                                    <input type="text" id="archive" formControlName="num_carte"
+                                        [class.error]="errors.num_carte">
+                                    <div class="error" *ngIf="errors.num_carte">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.num_carte}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="langue">Langue</label>
+                                    <select id="langue" formControlName="langue" [class.error]="errors.langue">
+                                        <option value="0">Selectionnez une langue</option>
+                                        <option value="Français">Français</option>
+                                        <option value="Anglais">Anglais</option>
+                                        <option value="Espagnol">Espagnol</option>
+                                        <option value="Lingala">Lingala</option>
+                                        <option value="Kinkongo">Kinkongo</option>
+                                        <option value="Swahili">Swahili</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.langue">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.langue}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="docteur">Médecin traitant</label>
+                                    <select id="docteur" formControlName="docteur" [class.error]="errors.docteur">
+                                        <option value="0">Selectionnez un médecin</option>
+                                        <option value="{{docteur.name}}" *ngFor="let docteur of docteurs">
+                                            {{docteur.name}}
+                                        </option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.docteur">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.docteur}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="group-form">
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="etat">Etat civil</label>
+                                    <input type="text" id="etat" formControlName="etat_civil"
+                                        [class.error]="errors.etat_civil">
+                                    <div class="error" *ngIf="errors.etat_civil">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.etat_civil}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="adresse">Adresse</label>
+                                    <textarea type="text" id="adresse" formControlName="adresse"
+                                        [class.error]="errors.adresse"></textarea>
+                                    <div class="error" *ngIf="errors.adresse">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.adresse}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="boite">Boite postal</label>
+                                    <input type="text" id="boite" formControlName="boite_postal"
+                                        [class.error]="errors.boite_postal">
+                                    <div class="error" *ngIf="errors.boite_postal">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.boite_postal}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="pays_residence">Pays de résidence</label>
+                                    <select id="pays_residence" formControlName="pays_residence"
+                                        [class.error]="errors.pays_residence">
+                                        <option value="0">Selectionnez un pays</option>
+                                        <option value="{{pay.id}}" *ngFor="let pay of pays">{{pay.name}}</option>
+                                    </select>
+                                    <div class="error" *ngIf="errors.pays_residence">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.pays_residence}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="group-form">
-                            <div class="input">
-                                <label for="prenom">Prénom </label>
-                                <input type="text" id="prenom" formControlName="prenom" placeholder="Prénom du patient"
-                                    [class.error]="errors.prenom">
-                                <div class="error" *ngIf="errors.prenom">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.prenom}}</span>
+                            <div class="input-flex">
+                                <div class="input">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" formControlName="email" [class.error]="errors.email">
+                                    <div class="error" *ngIf="errors.email">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.email}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="sexe">Sexe</label>
-                                <select id="sexe" formControlName="sexe" [class.error]="errors.sexe">
-                                    <option value="0">Selectionnez une sexe</option>
-                                    <option value="M">M</option>
-                                    <option value="F">F</option>
-                                </select>
-                                <div class="error" *ngIf="errors.sexe">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.sexe}}</span>
+                                <div class="input">
+                                    <label for="telephone_fixe">Téléphone fixe</label>
+                                    <input type="telephone_fixe" id="telephone_fixe" formControlName="telephone_fixe"
+                                        [class.error]="errors.telephone_fixe">
+                                    <div class="error" *ngIf="errors.telephone_fixe">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.telephone_fixe}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="date">Date de naissance </label>
-                                <input type="date" id="date" formControlName="date_naiss" [class.error]="errors.date_naiss">
-                                <div class="error" *ngIf="errors.date_naiss">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.date_naiss}}</span>
+                                <div class="input">
+                                    <label for="telephone_mobile">Téléphone mobile</label>
+                                    <input type="telephone_mobile" id="telephone_mobile"
+                                        formControlName="telephone_mobile" [class.error]="errors.telephone_mobile">
+                                    <div class="error" *ngIf="errors.telephone_mobile">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.telephone_mobile}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="lieu">Lieu de naissance </label>
-                                <input type="text" id="lieu" formControlName="lieu_naiss" [class.error]="errors.lieu_naiss">
-                                <div class="error" *ngIf="errors.lieu_naiss">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.lieu_naiss}}</span>
+                                <div class="input">
+                                    <label for="profession">Proféssion</label>
+                                    <input type="profession" id="profession" formControlName="profession"
+                                        [class.error]="errors.profession">
+                                    <div class="error" *ngIf="errors.profession">
+                                        <span class="icon-attention"></span>
+                                        <span class="title">{{errors.profession}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="pays_natal">Pays natal du patient</label>
-                                <select id="pays_natal" formControlName="pays_natal" [class.error]="errors.pays_natal">
-                                    <option value="0">Selectionnez un pays</option>
-                                    <option value="{{pay.id}}" *ngFor="let pay of pays">{{pay.name}}</option>
-                                </select>
-                                <div class="error" *ngIf="errors.pays_natal">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.pays_natal}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="category">Catégorie du patient</label>
-                                <select id="category" formControlName="category" [class.error]="errors.category" (change)="loadSociety()">
-                                    <option value="0">Selectionnez une catégorie</option>
-                                    <option value="{{category.id}}" *ngFor="let category of categories">{{category.libelle}}</option>
-                                </select>
-                                <div class="error" *ngIf="errors.category">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.category}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="society">Société du patient</label>
-                                <select id="society" formControlName="society" [class.error]="errors.society">
-                                    <option value="0">Selectionnez une société</option>
-                                    <option value="{{society.name}}" *ngFor="let society of societies">{{society.libelle}}</option>
-                                </select>
-                                <div class="error" *ngIf="errors.society">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.society}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="dossier">Numéro du dossier </label>
-                                <input type="text" id="dossier" formControlName="num_dossier" [class.error]="errors.num_dossier">
-                                <div class="error" *ngIf="errors.num_dossier">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.num_dossier}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="archive">Numéro de la carte d'identité</label>
-                                <input type="text" id="archive" formControlName="num_carte" [class.error]="errors.num_carte">
-                                <div class="error" *ngIf="errors.num_carte">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.num_carte}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="langue">Langue</label>
-                                <select id="langue" formControlName="langue" [class.error]="errors.langue">
-                                    <option value="0">Selectionnez une langue</option>
-                                    <option value="Français">Français</option>
-                                    <option value="Anglais">Anglais</option>
-                                    <option value="Espagnol">Espagnol</option>
-                                    <option value="Lingala">Lingala</option>
-                                    <option value="Kinkongo">Kinkongo</option>
-                                    <option value="Swahili">Swahili</option>
-                                </select>
-                                <div class="error" *ngIf="errors.langue">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.langue}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="docteur">Médecin traitant</label>
-                                <select id="docteur" formControlName="docteur" [class.error]="errors.docteur">
-                                    <option value="0">Selectionnez un médecin</option>
-                                    <option value="{{docteur.name}}" *ngFor="let docteur of docteurs">{{docteur.name}}</option>
-                                </select>
-                                <div class="error" *ngIf="errors.docteur">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.docteur}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="etat">Etat civil</label>
-                                <input type="text" id="etat" formControlName="etat_civil" [class.error]="errors.etat_civil">
-                                <div class="error" *ngIf="errors.etat_civil">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.etat_civil}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="adresse">Adresse</label>
-                                <textarea type="text" id="adresse" formControlName="adresse" [class.error]="errors.adresse"></textarea>
-                                <div class="error" *ngIf="errors.adresse">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.adresse}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="boite">Boite postal</label>
-                                <input type="text" id="boite" formControlName="boite_postal" [class.error]="errors.boite_postal">
-                                <div class="error" *ngIf="errors.boite_postal">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.boite_postal}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="pays_residence">Pays de résidence</label>
-                                <select id="pays_residence" formControlName="pays_residence" [class.error]="errors.pays_residence">
-                                    <option value="0">Selectionnez un pays</option>
-                                    <option value="{{pay.id}}" *ngFor="let pay of pays">{{pay.name}}</option>
-                                </select>
-                                <div class="error" *ngIf="errors.pays_residence">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.pays_residence}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" formControlName="email" [class.error]="errors.email">
-                                <div class="error" *ngIf="errors.email">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.email}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="telephone_fixe">Téléphone fixe</label>
-                                <input type="telephone_fixe" id="telephone_fixe" formControlName="telephone_fixe" [class.error]="errors.telephone_fixe">
-                                <div class="error" *ngIf="errors.telephone_fixe">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.telephone_fixe}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="telephone_mobile">Téléphone mobile</label>
-                                <input type="telephone_mobile" id="telephone_mobile" formControlName="telephone_mobile" [class.error]="errors.telephone_mobile">
-                                <div class="error" *ngIf="errors.telephone_mobile">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.telephone_mobile}}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group-form">
-                            <div class="input">
-                                <label for="profession">Proféssion</label>
-                                <input type="profession" id="profession" formControlName="profession" [class.error]="errors.profession">
-                                <div class="error" *ngIf="errors.profession">
-                                    <span class="icon-attention"></span>
-                                    <span class="title">{{errors.profession}}</span>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-btn">
                             <button type="submit" (click)="sauvegarder()" [disabled]="isAdding">Sauvegarder</button>
                         </div>
@@ -356,7 +356,7 @@
                                 <td>
                                     {{patient.telephone_mobile}}
                                 </td>
-                               
+
                                 <td>
                                     <button type="button" class="badge success" (click)="show(patient.id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"

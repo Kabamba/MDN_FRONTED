@@ -1,0 +1,130 @@
+<app-nav-left (wrapper)="wrapper($event)" [addActive]="addActive"></app-nav-left>
+
+<div class="wrapper" [class.active]="isWrapper" (click)="closeAll()">
+    <div class="header-responsive">
+        <div class="logo">
+            <h2><em>MDN<span> admin</span></em></h2>
+        </div>
+
+        <div class="toggle" (click)="toggle($event)">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="wrapper-content">
+        <app-search-bar (night)="night($event)"></app-search-bar>
+        <div class="contents">
+
+
+            <div class="tableaux pd-10">
+                <div class="loading-table" [class.active]="!isLoadindTable">
+                    <div>
+                    </div>
+                </div>
+
+                <div class="header-content">
+                    <h2>Bulle des permissions administrateur</h2>
+
+                    <div class="group-form">
+                        <input type="text" name="nom" [(ngModel)]="nom" (ngModelChange)="search()"
+                            placeholder="Rechercher par le nom">
+                        <span class="icon-search"></span>
+                    </div>
+                </div>
+
+                <div class="permission">
+                    <div class="permi-content">
+                        <div class="permi-flex" *ngFor="let admin of admins | orderBy: key : reverse | paginate : {itemsPerPage:6,currentPage:p}">
+                            <p *ngFor="let perm of admin.permissions"> {{perm.libelle}}</p> 
+                        </div>
+                    </div>
+                </div>
+
+<!-- 
+                <div class="table">
+                    <table class="wd-1000">
+                        <thead>
+                            <th (click)="sort('id')">#ID <span class="icon-sort-number-up"></span></th>
+                            <th>Role</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

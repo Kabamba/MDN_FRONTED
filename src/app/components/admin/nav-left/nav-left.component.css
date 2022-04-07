@@ -6,34 +6,53 @@
   left: 0;
   background: var(--sidebar);
   border-right: 1px solid var(--sidebar-border);
-  transition:width .4s ease-in-out .1s, all .4s ease 0.1s;
-  z-index:20;
+  transition: width 0.4s ease-in-out 0.1s, all 0.4s ease 0.1s;
+  z-index: 20;
 }
 
-
-.nav-container nav{
-  height:100%;
-  display:flex;
-  flex-direction:column;
+.nav-container nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  overflow:scroll;
+  overflow: hidden;
 }
 
 .nav-container .nav-links {
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  padding:0 20px;
-  transition:.4s ease .1s;
+  padding: 0 10px;
+  transition: 0.4s ease 0.1s;
+}
+
+.nav-container .links {
+  width: 100%;
+  max-height: calc(100% - 350px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.nav-container .links::-webkit-scrollbar {
+  width: 5px;
+}
+
+.nav-container .links::-webkit-scrollbar-thumb {
+  background: #818588;
+  border-radius: 10px;
+}
+
+.nav-container.active .links::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-container .nav-links .toggle {
   align-self: flex-start;
   cursor: pointer;
   margin: 20px 0 20px;
-  padding:13px 14px;
+  padding: 13px 14px;
   border-radius: 10px;
   transition: all 0.3s ease 0s;
 }
@@ -67,9 +86,9 @@
   align-items: center;
   line-height: 0px;
   width: 100%;
-  padding:13px 15px;
+  padding: 13px 15px;
   color: var(--color-links);
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 10px;
   font-family: "SourcePro-Medium";
 }
@@ -103,51 +122,50 @@
 .nav-container .nav-links a:hover .icon svg polyline,
 .nav-container .nav-links a:hover .icon svg line {
   fill: #4ca6a8;
-  stroke:#4ca6a8 !important;
+  stroke: #4ca6a8 !important;
 }
 
-.nav-container a .title{
-  transition:.3s .3s;
+.nav-container a .title {
+  transition: 0.3s 0.3s;
 }
 
 .profil {
-  width:100%;
+  width: 100%;
   border-top: 1px solid var(--sidebar-border);
-  padding:20px;
-  transition:.3s;
+  padding: 20px;
+  transition: 0.3s;
 }
 
-.profil .profil-content{
-  display:flex;
-  align-items:center;
-  width:200px;
-  transition:.3s;
+.profil .profil-content {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  transition: 0.3s;
 }
-
 
 .profil .profil-circle-name {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-family: "SourcePro-Medium";
   font-size: 17px;
   text-transform: uppercase;
-  background:var(--hover-links);
+  background: var(--hover-links);
   color: #4ca6a8;
   line-height: 0px;
-  margin-right:20px;
-  transition:background .4s ease 0.1s;
+  margin-right: 20px;
+  transition: background 0.4s ease 0.1s;
 }
 
 .profil .profil-name {
   text-transform: capitalize;
   font-size: 18px;
   display: block;
-  transition:.3s;
-  display:block;
+  transition: 0.3s;
+  display: block;
 }
 
 .profil .profil-name span {
@@ -155,90 +173,93 @@
   display: block;
 }
 
-.nav-container.active{
+.nav-container.active {
   width: 75px;
 }
 
-.nav-container.active .nav-links{
-  padding:0 10px;
+.nav-container.active .nav-links {
+  padding: 0 10px;
 }
 
-.nav-container.active .nav-links .title{
-  margin-left:30px;
-  opacity:0;
-  visibility:hidden;
+.nav-container.active .nav-links .title {
+  margin-left: 30px;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.nav-container.active .profil{
-  padding-left:14px;
+.nav-container.active .profil {
+  padding-left: 14px;
 }
 
-.nav-container.active .profil .profi-name{
-  opacity:0;
+.nav-container.active .profil .profi-name {
+  opacity: 0;
 }
 
-
-@media screen and (min-width:300px) and (max-width: 950px) {
-  .nav-container{
+@media screen and (min-width: 300px) and (max-width: 950px) {
+  .nav-container {
     transform: translateX(-400px);
     transition: transform 0.3s ease-in-out 0s;
   }
 
   .nav-container.addActive {
     transform: translateX(0px);
-    width:240px;
+    width: 240px;
+  }
+  .nav-container .links::-webkit-scrollbar {
+    display: none;
   }
 }
 
+@media screen and (min-width: 960px) and (max-width: 1198px) {
+  .nav-container {
+    width: 75px;
+    display: flex;
+  }
 
-@media screen and (min-width:960px) and (max-width:1198px){
-    .nav-container{
-      width: 75px;
-      display:flex;
-    }
-    
-    .nav-container .nav-links{
-      padding:0 10px;
-    }
-    
-    .nav-container .nav-links .title{
-      margin-left:30px;
-      opacity:0;
-      visibility:hidden;
-    }
-    
-    .nav-container .profil{
-      padding-left:14px;
-    }
-    
-    .nav-container .profil .profi-name{
-      opacity:0;
-    }
+  .nav-container .nav-links {
+    padding: 0 10px;
+  }
 
-    /* ============================= Avec Active ================================== */
-    /* ============================= Avec Active ================================== */
-    
-    .nav-container.active{
-      width: 240px;
-    }
-    
-    .nav-container.active .nav-links{
-      padding:0 20px;
-    }
-    
-    .nav-container.active .nav-links .title{
-      margin-left:0px;
-      opacity:1;
-      visibility:visible;
-    }
-    
-    .nav-container.active .profil{
-      padding:20px;
-    }
-    
-    .nav-container.active .profil .profi-name{
-      opacity:1;
-    }
-    
-    
+  .nav-container .nav-links .title {
+    margin-left: 30px;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .nav-container .links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-container .profil {
+    padding-left: 14px;
+  }
+
+  .nav-container .profil .profi-name {
+    opacity: 0;
+  }
+
+  /* ============================= Avec Active ================================== */
+  /* ============================= Avec Active ================================== */
+
+  .nav-container.active {
+    width: 240px;
+  }
+
+  .nav-container.active .nav-links {
+    padding: 0 20px;
+  }
+
+  .nav-container.active .nav-links .title {
+    margin-left: 0px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-container.active .profil {
+    padding: 20px;
+  }
+
+  .nav-container.active .profil .profi-name {
+    opacity: 1;
+  }
 }

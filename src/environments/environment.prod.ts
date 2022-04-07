@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://mdn-rdv.com/api',
-  apiImage: 'http://mdn-rdv.com/storage',
+  apiUrl: 'http://mdnApp.com/api',
+  apiImage: 'http://mdnApp.com/storage',
 };

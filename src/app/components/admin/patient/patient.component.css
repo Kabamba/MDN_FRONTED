@@ -1,0 +1,28 @@
+.card-wrapper {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.card-wrapper form .input-flex {
+  align-items: normal;
+}
+
+.card-wrapper form .input-flex .input {
+  width: 24%;
+}
+
+@media screen and (max-width: 760px) {
+  .card-wrapper form .input-flex .input {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1100px) {
+  .modal {
+    padding: 0 20px;
+  }
+
+  .card-wrapper {
+    width: 100%;
+  }
+}

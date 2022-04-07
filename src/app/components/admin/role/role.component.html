@@ -60,7 +60,7 @@
                             </div>
                         </div>
 
-                        <div class="group-form">
+                        <!-- <div class="group-form">
                             <div class="input">
                                 <label for="all">Tout selectionner</label>
                                 <input type="checkbox" id="all" (click)="SelectAll()">
@@ -87,6 +87,31 @@
                                     <span class="icon-attention"></span>
                                     <span class="title">{{errors.permissions}}</span>
                                 </div>
+                            </div>
+                        </div> -->
+
+                        <div class="check-list">
+                            <div class="check-list-content">
+                                <label class="check-list-box">
+                                    <span class="check-label">
+                                        Tout selectionner
+                                    </span>
+                                    <input type="checkbox" name="" id="all" (click)="SelectAll()" hidden>
+                                    <div class="check-box">
+                                        <div class="icon-ok"></div>
+                                    </div>
+                                </label>
+
+                                <label class="check-list-box" *ngFor="let permission of permissions">
+                                    <span class="check-label">
+                                        {{permission.libelle}}
+                                    </span>
+                                    <input type="checkbox" name="" id="permission_{{permission.id}}" [value]="permission.id"
+                                    [checked]="isActive(permission.id)" hidden>
+                                    <div class="check-box">
+                                        <div class="icon-ok"></div>
+                                    </div>
+                                </label>
                             </div>
                         </div>
 
